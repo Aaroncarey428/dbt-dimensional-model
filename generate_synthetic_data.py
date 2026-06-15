@@ -35,8 +35,16 @@ def random_date(days_back=365):
 
 def build_rows(num_rows):
     rows = []
-    # Group tasks under a smaller set of jobs so job vs task counts differ.
     num_jobs = num_rows // 2
+
+    # Assign a fixed customer and city to each job up front,
+    # so a job always belongs to exactly one customer (correct grain).
+    job_customer = {}
+    job_city = {}
+    for j in range(1, num_jobs + 1):
+        job_customer[80000 + j] = random.choice(CUSTOMERS)
+        job_city[80000 + j] = random.choice(CITIES)
+
     for i in range(1, num_rows + 1):
         job_id = 80000 + random.randint(1, num_jobs)
         job_type = random.choice(JOB_TYPES)
@@ -48,8 +56,8 @@ def build_rows(num_rows):
         rows.append({
             "job_id": job_id,
             "task_id": 200000 + i,
-            "customer": random.choice(CUSTOMERS),
-            "city": random.choice(CITIES),
+            "customer": job_customer[job_id],
+            "city": job_city[job_id],
             "job_type": job_type,
             "status": random.choice(STATUSES),
             "created_at": random_date().strftime("%Y-%m-%d"),
