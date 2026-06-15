@@ -22,6 +22,9 @@ It is the same raw to clean to report layering done by hand in many shops, but v
 
 ## Lineage
 
+![dbt lineage graph](lineage.png)
+
+*Lineage graph generated automatically by dbt from this project.*
 ```mermaid
 flowchart LR
     A[raw_jobs_tasks seed] --> B[stg_jobs_tasks staging]
