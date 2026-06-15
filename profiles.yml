@@ -1,0 +1,11 @@
+# profiles.yml
+# Connection settings. Uses DuckDB, a local file based database,
+# so no server or account is needed.
+
+dbt_dimensional_model:        # must match 'profile' in dbt_project.yml
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: dbt_model.duckdb   # the database is just a local file
+      threads: 4
