@@ -1,0 +1,18 @@
+# dbt_project.yml
+# Main configuration for the dbt project.
+
+name: 'dbt_dimensional_model'
+version: '1.0.0'
+profile: 'dbt_dimensional_model'   # must match the profile name in profiles.yml
+
+# Where dbt looks for each type of file.
+model-paths: ["models"]
+seed-paths: ["seeds"]
+
+# How models are materialized (built) by folder.
+models:
+  dbt_dimensional_model:
+    staging:
+      +materialized: view      # staging models build as lightweight views
+    marts:
+      +materialized: table     # marts build as real tables for reporting
