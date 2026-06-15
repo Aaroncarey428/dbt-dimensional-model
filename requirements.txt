@@ -1,0 +1,2 @@
+# Python dependencies for dbt-dimensional-model
+dbt-duckdb>=1.7
